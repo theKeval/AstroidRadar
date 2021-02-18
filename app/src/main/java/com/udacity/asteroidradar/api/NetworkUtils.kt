@@ -22,19 +22,19 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
             val codename = asteroidJson.getString("name")
             val absoluteMagnitude = asteroidJson.getDouble("absolute_magnitude_h")
             val estimatedDiameter = asteroidJson.getJSONObject("estimated_diameter")
-                .getJSONObject("kilometers").getDouble("estimated_diameter_max")
+                    .getJSONObject("kilometers").getDouble("estimated_diameter_max")
 
             val closeApproachData = asteroidJson
-                .getJSONArray("close_approach_data").getJSONObject(0)
+                    .getJSONArray("close_approach_data").getJSONObject(0)
             val relativeVelocity = closeApproachData.getJSONObject("relative_velocity")
-                .getDouble("kilometers_per_second")
+                    .getDouble("kilometers_per_second")
             val distanceFromEarth = closeApproachData.getJSONObject("miss_distance")
-                .getDouble("astronomical")
+                    .getDouble("astronomical")
             val isPotentiallyHazardous = asteroidJson
-                .getBoolean("is_potentially_hazardous_asteroid")
+                    .getBoolean("is_potentially_hazardous_asteroid")
 
             val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
-                estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
+                    estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
             asteroidList.add(asteroid)
         }
     }
