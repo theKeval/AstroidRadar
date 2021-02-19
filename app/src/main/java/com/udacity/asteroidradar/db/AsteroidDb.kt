@@ -17,7 +17,7 @@ interface AsteroidDao {
     fun insertAll(vararg asteroid: AsteroidEntity)
 
     @Query("select * from Asteroids order by datetime(closeApproachDate)")
-    fun getAsteroids(): List<AsteroidEntity>
+    fun getAsteroids(): LiveData<List<AsteroidEntity>>
 }
 
 private lateinit var INSTANCE: AsteroidDb
