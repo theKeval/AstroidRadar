@@ -6,8 +6,11 @@ import com.udacity.asteroidradar.api.AsteroidApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.db.AsteroidDb
 import com.udacity.asteroidradar.db.asAsteroids
+import com.udacity.asteroidradar.db.toPictureOfDay
 import com.udacity.asteroidradar.models.Asteroid
+import com.udacity.asteroidradar.models.PictureOfDay
 import com.udacity.asteroidradar.models.asAsteroidEntity
+import com.udacity.asteroidradar.models.toPodEntity
 import com.udacity.asteroidradar.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -35,7 +38,7 @@ class AsteroidRepository(private val database: AsteroidDb) {
             )
 
             val asteroids = parseAsteroidsJsonResult(JSONObject(response))
-            database.asteroidDao.insertAll(*asteroids.asAsteroidEntity().toTypedArray())
+            database.asteroidDao.insertAllAsteroids(*asteroids.asAsteroidEntity().toTypedArray())
         }
     }
 
