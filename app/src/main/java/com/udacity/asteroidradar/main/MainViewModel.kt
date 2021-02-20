@@ -1,11 +1,14 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.db.getDatabase
 import com.udacity.asteroidradar.models.Asteroid
 import com.udacity.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.lang.IllegalArgumentException
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -18,8 +21,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            repository.refreshAsteroids()
-            repository.refreshPod()
+            try {
+                repository.refreshAsteroids()
+                repository.refreshPod()
+            }
+            catch (exce: Exception) {
+                Log.i("MainViewModel", "Unable to refresh the data. Mostly because of no internet conection.")
+            }
         }
     }
 
