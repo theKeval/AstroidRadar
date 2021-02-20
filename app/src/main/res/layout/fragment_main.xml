@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/placeholder_picture_of_day"/>
+                bindPod="@{viewModel.pod.url}"/>
+            <!-- app:srcCompat="@drawable/placeholder_picture_of_day" -->
 
             <TextView
                 android:id="@+id/textView"
