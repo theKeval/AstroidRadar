@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
@@ -34,7 +36,14 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         asteroidAdapter = AsteroidsAdapter(AsteroidClicked {
-            Toast.makeText(context, "Incoming feature..", Toast.LENGTH_LONG).show()
+            viewModel.showAsteroidDetail(it)
+        })
+
+        viewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer { asteroid ->
+            if (null != asteroid) {
+                this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
+                viewModel.doneShowingAsteroidDetail()
+            }
         })
 
         binding.asteroidRecycler.apply {
