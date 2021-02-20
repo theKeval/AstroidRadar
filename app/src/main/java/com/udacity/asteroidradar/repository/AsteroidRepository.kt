@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.api.AsteroidApi
+import com.udacity.asteroidradar.api.getNextSevenDaysFormattedDates
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.db.AsteroidDb
 import com.udacity.asteroidradar.db.asAsteroids
@@ -30,10 +31,12 @@ class AsteroidRepository(private val database: AsteroidDb) {
         val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
         val today = dateFormat.format(datetime)
 
+        val week = getNextSevenDaysFormattedDates()
+
         withContext(Dispatchers.IO) {
             val response = AsteroidApi.retrofitService.getAsteroids(
-                startDate = today,
-                endDate = today,
+                startDate = week[0],
+                endDate = week[week.size-1],
                 apiKey = Constants.API_KEY
             )
 
