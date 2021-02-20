@@ -17,17 +17,7 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL+"neo/rest/v1/")
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .build()
 
-private val retrofitForPOD = Retrofit.Builder()
-    .baseUrl(BASE_URL+"planetary")
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .build()
 
 interface AsteroidService {
 
@@ -40,9 +30,9 @@ interface AsteroidService {
         endDate: String,
 
         @Query("api_key")
-        apiKey: String = "DEMO_KEY"
+        apiKey: String
 
-    ): Deferred<String>
+    ): String
 
 }
 
@@ -60,11 +50,23 @@ interface PodService {
 
 object AsteroidApi {
 
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL+"neo/rest/v1/")
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
+
+//    private val retrofitForPOD = Retrofit.Builder()
+//        .baseUrl(BASE_URL+"planetary")
+//        .addConverterFactory(MoshiConverterFactory.create(moshi))
+//        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//        .build()
+
     val retrofitService: AsteroidService by lazy {
         retrofit.create(AsteroidService::class.java)
     }
 
-    val retrofitForPodService: PodService by lazy {
-        retrofitForPOD.create(PodService::class.java)
-    }
+//    val retrofitForPodService: PodService by lazy {
+//        retrofitForPOD.create(PodService::class.java)
+//    }
 }

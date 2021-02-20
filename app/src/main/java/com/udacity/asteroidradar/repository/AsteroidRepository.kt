@@ -30,9 +30,9 @@ class AsteroidRepository(private val database: AsteroidDb) {
         withContext(Dispatchers.IO) {
             val response = AsteroidApi.retrofitService.getAsteroids(
                 startDate = today,
-                endDate = today
-                // add apiKey value here
-            ).await()
+                endDate = today,
+                apiKey = Constants.API_KEY
+            )
 
             val asteroids = parseAsteroidsJsonResult(JSONObject(response))
             database.asteroidDao.insertAll(*asteroids.asAsteroidEntity().toTypedArray())
