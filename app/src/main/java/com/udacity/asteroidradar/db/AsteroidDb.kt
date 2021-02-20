@@ -18,13 +18,13 @@ interface AsteroidDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllAsteroids(vararg asteroid: AsteroidEntity)
 
-    @Query("select * from Asteroids order by datetime(closeApproachDate) desc")
+    @Query("select * from Asteroids order by datetime(closeApproachDate) asc")
     suspend fun getAllAsteroids(): List<AsteroidEntity>
 
     @Query("select * from Asteroids where closeApproachDate like :today")
     suspend fun getTodayAsteroids(today: String): List<AsteroidEntity>
 
-    @Query("select * from Asteroids where datetime(closeApproachDate) between datetime(:startDate) and datetime(:endDate) order by datetime(closeApproachDate) desc")
+    @Query("select * from Asteroids where datetime(closeApproachDate) between datetime(:startDate) and datetime(:endDate) order by datetime(closeApproachDate) asc")
     suspend fun getWeekAsteroids(startDate: String, endDate: String): List<AsteroidEntity>
 
 
