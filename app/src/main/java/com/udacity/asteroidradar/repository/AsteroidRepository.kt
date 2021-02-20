@@ -29,62 +29,15 @@ class AsteroidRepository(private val database: AsteroidDb) {
 
     private val week = getNextSevenDaysFormattedDates()
 
-//    val allSavedAsteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAllAsteroids()) {
-//        it.asAsteroids()
-//    }
-//
-//    val todayAsteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getTodayAsteroids(week[0])) {
-//        it.asAsteroids()
-//    }
-//
-//    val weekAsteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getWeekAsteroids(week[0], week[week.size-1])) {
-//        it.asAsteroids()
-//    }
-
-
     suspend fun getAsteroids(filter: AsteroidFilter): List<Asteroid> {
-
         return when (filter) {
             AsteroidFilter.SHOW_TODAY -> database.asteroidDao.getTodayAsteroids(week[0]).asAsteroids()
             AsteroidFilter.SHOW_WEEK -> database.asteroidDao.getWeekAsteroids(week[0], week[week.size-1]).asAsteroids()
             AsteroidFilter.SHOW_ALL_SAVED -> database.asteroidDao.getAllAsteroids().asAsteroids()
         }
-
-
-//        when (filter) {
-//            AsteroidFilter.SHOW_TODAY -> {
-//                Transformations.map(database.asteroidDao.getTodayAsteroids(week[0])) {
-//                    it.asAsteroids()
-//                }
-//            }
-//
-//            AsteroidFilter.SHOW_WEEK -> {
-//                Transformations.map(
-//                    database.asteroidDao.getWeekAsteroids(
-//                        week[0],
-//                        week[week.size - 1]
-//                    )
-//                ) {
-//                    it.asAsteroids()
-//                }
-//            }
-//
-//            AsteroidFilter.SHOW_ALL_SAVED -> {
-//                Transformations.map(database.asteroidDao.getAllAsteroids()) {
-//                    it.asAsteroids()
-//                }
-//            }
-//
-//        }
-
     }
 
-
     suspend fun refreshAsteroids() {
-        val datetime = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-        val today = dateFormat.format(datetime)
-
         withContext(Dispatchers.IO) {
             val response = AsteroidApi.retrofitService.getAsteroids(
                 startDate = week[0],
