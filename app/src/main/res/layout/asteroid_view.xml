@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/app_background"
-        android:padding="7dp">
+        android:padding="7dp"
+        android:onClick="@{() -> asteroidCallback.onClicked(asteroid)}">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -35,7 +36,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/default_text_color"
                 android:layout_marginStart="7dp"
-                android:layout_marginEnd="7dp"/>
+                android:layout_marginEnd="7dp"
+                android:text="@{asteroid.codename}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -44,7 +46,8 @@
                 android:textColor="@color/default_text_color"
                 android:layout_marginTop="7dp"
                 android:layout_marginStart="7dp"
-                android:layout_marginEnd="7dp"/>
+                android:layout_marginEnd="7dp"
+                android:text="@{asteroid.closeApproachDate}"/>
 
         </LinearLayout>
 
@@ -53,7 +56,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:padding="10dp"
-            tools:src="@drawable/ic_status_normal"/>
+            tools:src="@drawable/ic_status_normal"
+            statusIcon="@{asteroid.potentiallyHazardous}"/>
 
     </LinearLayout>
 
