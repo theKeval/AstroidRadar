@@ -2,10 +2,12 @@ package com.udacity.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidViewBinding
@@ -22,12 +24,22 @@ class MainFragment : Fragment() {
         ViewModelProvider(this, MainViewModel.Factory(activity.application)).get(MainViewModel::class.java)
     }
 
+    private var asteroidAdapter: AsteroidsAdapter? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
+
+        asteroidAdapter = AsteroidsAdapter(AsteroidClicked {
+            Toast.makeText(context, "Incoming feature..", Toast.LENGTH_LONG).show()
+        })
+
+        binding.asteroidRecycler.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = asteroidAdapter
+        }
 
         setHasOptionsMenu(true)
 
