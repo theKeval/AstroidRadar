@@ -42,9 +42,9 @@ interface PodService {
     suspend fun getPod(
 
         @Query("api_key")
-        apiKey: String = "DEMO_KEY"
+        apiKey: String
 
-    ) : Deferred<PictureOfDay>
+    ) : PictureOfDay
 
 }
 
@@ -56,17 +56,17 @@ object AsteroidApi {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-//    private val retrofitForPOD = Retrofit.Builder()
-//        .baseUrl(BASE_URL+"planetary")
-//        .addConverterFactory(MoshiConverterFactory.create(moshi))
-//        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-//        .build()
+    private val retrofitForPOD = Retrofit.Builder()
+        .baseUrl(BASE_URL+"planetary/")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+    // .addCallAdapterFactory(CoroutineCallAdapterFactory())
 
     val retrofitService: AsteroidService by lazy {
         retrofit.create(AsteroidService::class.java)
     }
 
-//    val retrofitForPodService: PodService by lazy {
-//        retrofitForPOD.create(PodService::class.java)
-//    }
+    val retrofitForPodService: PodService by lazy {
+        retrofitForPOD.create(PodService::class.java)
+    }
 }
