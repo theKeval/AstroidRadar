@@ -52,10 +52,6 @@ class MainFragment : Fragment() {
 //        viewModel.pod.observe(viewLifecycleOwner, Observer {
 //            binding.executePendingBindings()
 //        })
-//
-//        viewModel.asteroids.observe(viewLifecycleOwner, Observer {
-//            binding.executePendingBindings()
-//        })
 
         binding.asteroidRecycler.apply {
             layoutManager = LinearLayoutManager(context)
@@ -91,14 +87,14 @@ class MainFragment : Fragment() {
 //            else ->AsteroidFilter.SHOW_TODAY
 //        }
 
-//        viewModel.updateFilter(
-//            when (item.itemId) {
-//                R.id.show_week_asteroid_menu -> AsteroidFilter.SHOW_WEEK
-//                R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
-//                R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
-//                else ->AsteroidFilter.SHOW_TODAY
-//            }
-//        )
+        viewModel.updateFilter(
+            when (item.itemId) {
+                R.id.show_week_asteroid_menu -> AsteroidFilter.SHOW_WEEK
+                R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
+                R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
+                else ->AsteroidFilter.SHOW_TODAY
+            }
+        )
 
         return true
     }

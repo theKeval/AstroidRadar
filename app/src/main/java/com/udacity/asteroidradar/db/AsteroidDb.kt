@@ -19,13 +19,13 @@ interface AsteroidDao {
     fun insertAllAsteroids(vararg asteroid: AsteroidEntity)
 
     @Query("select * from Asteroids order by datetime(closeApproachDate) desc")
-    fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
+    suspend fun getAllAsteroids(): List<AsteroidEntity>
 
     @Query("select * from Asteroids where closeApproachDate like :today")
-    fun getTodayAsteroids(today: String): LiveData<List<AsteroidEntity>>
+    suspend fun getTodayAsteroids(today: String): List<AsteroidEntity>
 
     @Query("select * from Asteroids where datetime(closeApproachDate) between datetime(:startDate) and datetime(:endDate) order by datetime(closeApproachDate) desc")
-    fun getWeekAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
+    suspend fun getWeekAsteroids(startDate: String, endDate: String): List<AsteroidEntity>
 
 
     // Pod operations
