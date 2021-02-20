@@ -1,7 +1,9 @@
 package com.udacity.asteroidradar.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Switch
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -16,6 +18,7 @@ import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidViewBinding
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 import com.udacity.asteroidradar.models.Asteroid
+import com.udacity.asteroidradar.repository.AsteroidFilter
 
 class MainFragment : Fragment() {
 
@@ -46,9 +49,13 @@ class MainFragment : Fragment() {
             }
         })
 
-        viewModel.pod.observe(viewLifecycleOwner, Observer {
-            binding.executePendingBindings()
-        })
+//        viewModel.pod.observe(viewLifecycleOwner, Observer {
+//            binding.executePendingBindings()
+//        })
+//
+//        viewModel.asteroids.observe(viewLifecycleOwner, Observer {
+//            binding.executePendingBindings()
+//        })
 
         binding.asteroidRecycler.apply {
             layoutManager = LinearLayoutManager(context)
@@ -64,7 +71,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.asteroids.observe(viewLifecycleOwner, Observer { asteroids ->
-            asteroids.apply {
+            asteroids?.apply {
                 asteroidAdapter?.asteroids = this
             }
         })
@@ -76,6 +83,23 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+//        when (item.itemId) {
+//            R.id.show_week_asteroid_menu -> asteroidAdapter?.asteroids = viewModel.weekAsteroids.value
+//            R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
+//            R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
+//            else ->AsteroidFilter.SHOW_TODAY
+//        }
+
+//        viewModel.updateFilter(
+//            when (item.itemId) {
+//                R.id.show_week_asteroid_menu -> AsteroidFilter.SHOW_WEEK
+//                R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
+//                R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
+//                else ->AsteroidFilter.SHOW_TODAY
+//            }
+//        )
+
         return true
     }
 }
