@@ -27,13 +27,18 @@ class MainFragment : Fragment() {
             "You can only access the viewModel after onViewCreated()"
         }
 
-        ViewModelProvider(this, MainViewModel.Factory(activity.application)).get(MainViewModel::class.java)
+        ViewModelProvider(
+            this,
+            MainViewModel.Factory(activity.application)
+        ).get(MainViewModel::class.java)
     }
 
     private var asteroidAdapter: AsteroidsAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -49,14 +54,17 @@ class MainFragment : Fragment() {
             }
         })
 
-//        viewModel.pod.observe(viewLifecycleOwner, Observer {
-//            binding.executePendingBindings()
-//        })
-
         binding.asteroidRecycler.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = asteroidAdapter
         }
+
+
+        //region not sure whether we need it or not, so keeping it
+//        viewModel.pod.observe(viewLifecycleOwner, Observer {
+//            binding.executePendingBindings()
+//        })
+        //endregion
 
         setHasOptionsMenu(true)
 
@@ -79,20 +87,12 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-//        when (item.itemId) {
-//            R.id.show_week_asteroid_menu -> asteroidAdapter?.asteroids = viewModel.weekAsteroids.value
-//            R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
-//            R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
-//            else ->AsteroidFilter.SHOW_TODAY
-//        }
-
         viewModel.updateFilter(
             when (item.itemId) {
                 R.id.show_week_asteroid_menu -> AsteroidFilter.SHOW_WEEK
                 R.id.show_today_asteroid_menu -> AsteroidFilter.SHOW_TODAY
                 R.id.show_all_saved_asteroid_menu -> AsteroidFilter.SHOW_ALL_SAVED
-                else ->AsteroidFilter.SHOW_TODAY
+                else -> AsteroidFilter.SHOW_TODAY
             }
         )
 
@@ -101,7 +101,7 @@ class MainFragment : Fragment() {
 }
 
 
-class AsteroidsAdapter(val callback: AsteroidClicked): RecyclerView.Adapter<AsteroidViewHolder>() {
+class AsteroidsAdapter(val callback: AsteroidClicked) : RecyclerView.Adapter<AsteroidViewHolder>() {
 
     var asteroids: List<Asteroid> = emptyList()
         set(value) {
@@ -114,7 +114,8 @@ class AsteroidsAdapter(val callback: AsteroidClicked): RecyclerView.Adapter<Aste
             LayoutInflater.from(parent.context),
             AsteroidViewHolder.LAYOUT,
             parent,
-            false)
+            false
+        )
 
         return AsteroidViewHolder(withDataBinding)
     }
@@ -132,7 +133,7 @@ class AsteroidsAdapter(val callback: AsteroidClicked): RecyclerView.Adapter<Aste
 
 }
 
-class AsteroidViewHolder(val binding: AsteroidViewBinding): RecyclerView.ViewHolder(binding.root) {
+class AsteroidViewHolder(val binding: AsteroidViewBinding) : RecyclerView.ViewHolder(binding.root) {
     companion object {
         @LayoutRes
         val LAYOUT = R.layout.asteroid_view

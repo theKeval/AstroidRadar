@@ -17,7 +17,7 @@ data class AsteroidEntity(
     val isPotentiallyHazardous: String
 )
 
-fun List<AsteroidEntity>.asAsteroids() : List<Asteroid> {
+fun List<AsteroidEntity>.asAsteroids(): List<Asteroid> {
     return map {
         Asteroid(
             id = it.id.toLong(),

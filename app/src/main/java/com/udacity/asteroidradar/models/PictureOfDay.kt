@@ -12,7 +12,7 @@ data class PictureOfDay(
     val mediaType: String,
     val title: String,
     val url: String
-): Parcelable
+) : Parcelable
 
 
 fun PictureOfDay.toPodEntity(): PodEntity {

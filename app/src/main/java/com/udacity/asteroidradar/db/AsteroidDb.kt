@@ -6,7 +6,7 @@ import androidx.room.*
 import com.udacity.asteroidradar.models.Asteroid
 
 @Database(entities = [AsteroidEntity::class, PodEntity::class], version = 1, exportSchema = false)
-abstract class AsteroidDb: RoomDatabase() {
+abstract class AsteroidDb : RoomDatabase() {
     abstract val asteroidDao: AsteroidDao
 }
 
@@ -40,13 +40,14 @@ interface AsteroidDao {
 
 private lateinit var INSTANCE: AsteroidDb
 
-fun getDatabase(context: Context) : AsteroidDb {
+fun getDatabase(context: Context): AsteroidDb {
     synchronized(AsteroidDb::class.java) {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(
                 context.applicationContext,
                 AsteroidDb::class.java,
-                "asteroid")
+                "asteroid"
+            )
                 .fallbackToDestructiveMigration()
                 .build()
         }

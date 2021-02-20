@@ -16,7 +16,7 @@ data class Asteroid(
     val isPotentiallyHazardous: Boolean
 ) : Parcelable
 
-fun List<Asteroid>.asAsteroidEntity() : List<AsteroidEntity> {
+fun List<Asteroid>.asAsteroidEntity(): List<AsteroidEntity> {
     return map {
         AsteroidEntity(
             id = it.id.toString(),

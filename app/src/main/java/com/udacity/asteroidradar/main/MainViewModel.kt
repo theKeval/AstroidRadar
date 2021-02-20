@@ -19,10 +19,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val asteroids: LiveData<List<Asteroid>>
         get() = _asteroids
 
-//    val asteroids = repository.allSavedAsteroids
-//    val todayAsteroids = repository.todayAsteroids
-//    val weekAsteroids = repository.weekAsteroids
-
     val pod = repository.pod
 
     private var _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
@@ -57,17 +53,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun updateFilter(filter: AsteroidFilter) {
-
         viewModelScope.launch {
             _asteroids.value = repository.getAsteroids(filter)
         }
-
-//        _asteroids.value = when (filter) {
-//            AsteroidFilter.SHOW_WEEK -> repository.getAsteroids(AsteroidFilter.SHOW_WEEK)
-//            AsteroidFilter.SHOW_TODAY -> repository.getAsteroids(AsteroidFilter.SHOW_TODAY)
-//            AsteroidFilter.SHOW_ALL_SAVED -> repository.getAsteroids(AsteroidFilter.SHOW_ALL_SAVED)
-//        }
-
     }
 
 
