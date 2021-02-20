@@ -42,4 +42,17 @@ class AsteroidRepository(private val database: AsteroidDb) {
         }
     }
 
+
+    val pod: LiveData<PictureOfDay> = Transformations.map(database.asteroidDao.getTodayPod()) {
+        it?.toPictureOfDay()
+        // it.toPictureOfDay()
+    }
+
+    suspend fun refreshPod() {
+        withContext(Dispatchers.IO) {
+            val response = AsteroidApi.retrofitForPodService.getPod(Constants.API_KEY)
+            database.asteroidDao.insertPod(response.toPodEntity())
+        }
+    }
+
 }

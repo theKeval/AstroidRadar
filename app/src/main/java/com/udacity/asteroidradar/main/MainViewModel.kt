@@ -14,10 +14,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = AsteroidRepository(database)
 
     val asteroids = repository.asteroids
+    val pod = repository.pod
 
     init {
         viewModelScope.launch {
             repository.refreshAsteroids()
+            repository.refreshPod()
         }
     }
 

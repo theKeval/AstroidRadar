@@ -46,6 +46,10 @@ class MainFragment : Fragment() {
             }
         })
 
+        viewModel.pod.observe(viewLifecycleOwner, Observer {
+            binding.executePendingBindings()
+        })
+
         binding.asteroidRecycler.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = asteroidAdapter
