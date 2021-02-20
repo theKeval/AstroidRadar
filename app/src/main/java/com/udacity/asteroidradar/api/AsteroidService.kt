@@ -18,7 +18,6 @@ private val moshi = Moshi.Builder()
     .build()
 
 
-
 interface AsteroidService {
 
     @GET("feed")
@@ -44,23 +43,23 @@ interface PodService {
         @Query("api_key")
         apiKey: String
 
-    ) : PictureOfDay
+    ): PictureOfDay
 
 }
 
 object AsteroidApi {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL+"neo/rest/v1/")
+        .baseUrl(BASE_URL + "neo/rest/v1/")
         .addConverterFactory(ScalarsConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
     private val retrofitForPOD = Retrofit.Builder()
-        .baseUrl(BASE_URL+"planetary/")
+        .baseUrl(BASE_URL + "planetary/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
+        // .addCallAdapterFactory(CoroutineCallAdapterFactory())    // add this if we want to return Differed in api call
         .build()
-    // .addCallAdapterFactory(CoroutineCallAdapterFactory())
 
     val retrofitService: AsteroidService by lazy {
         retrofit.create(AsteroidService::class.java)

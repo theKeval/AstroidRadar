@@ -31,8 +31,12 @@ class AsteroidRepository(private val database: AsteroidDb) {
 
     suspend fun getAsteroids(filter: AsteroidFilter): List<Asteroid> {
         return when (filter) {
-            AsteroidFilter.SHOW_TODAY -> database.asteroidDao.getTodayAsteroids(week[0]).asAsteroids()
-            AsteroidFilter.SHOW_WEEK -> database.asteroidDao.getWeekAsteroids(week[0], week[week.size-1]).asAsteroids()
+            AsteroidFilter.SHOW_TODAY -> database.asteroidDao.getTodayAsteroids(week[0])
+                .asAsteroids()
+            AsteroidFilter.SHOW_WEEK -> database.asteroidDao.getWeekAsteroids(
+                week[0],
+                week[week.size - 1]
+            ).asAsteroids()
             AsteroidFilter.SHOW_ALL_SAVED -> database.asteroidDao.getAllAsteroids().asAsteroids()
         }
     }
