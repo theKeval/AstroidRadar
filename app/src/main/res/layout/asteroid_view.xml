@@ -25,39 +25,38 @@
         android:padding="7dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_asteroid_name"
+                style="@style/label_style.asteroid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginEnd="7dp"
                 android:text="@{asteroid.codename}"
-                android:textColor="@color/default_text_color"
                 android:textStyle="bold"
                 tools:text="Asteroid Name" />
 
             <TextView
+                android:id="@+id/tv_asteroid_date"
+                style="@style/label_style.asteroid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="7dp"
-                android:layout_marginEnd="7dp"
+                android:layout_marginTop="@dimen/margin_regular"
                 android:text="@{asteroid.closeApproachDate}"
-                android:textColor="@color/default_text_color"
                 tools:text="Date" />
 
         </LinearLayout>
 
         <ImageView
             statusIcon="@{asteroid.potentiallyHazardous}"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/status_icon_size"
+            android:layout_height="@dimen/status_icon_size"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:contentDescription="@string/ast_status_icon"
+            android:padding="@dimen/padding_regular"
             tools:src="@drawable/ic_status_normal" />
 
     </LinearLayout>

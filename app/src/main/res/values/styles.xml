@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="label_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:ellipsize">end</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="label_style.asteroid_view">
+        <item name="android:layout_marginStart">@dimen/margin_regular</item>
+        <item name="android:layout_marginEnd">@dimen/margin_regular</item>
+    </style>
+
+
+
 </resources>
