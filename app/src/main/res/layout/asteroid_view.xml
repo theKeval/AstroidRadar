@@ -22,7 +22,7 @@
         android:background="@color/app_background"
         android:onClick="@{() -> asteroidCallback.onClicked(asteroid)}"
         android:orientation="horizontal"
-        android:padding="7dp">
+        android:padding="@dimen/padding_regular">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/tv_asteroid_name"
-                style="@style/label_style.asteroid_view"
+                style="@style/label_style.title_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{asteroid.codename}"
@@ -41,10 +41,9 @@
 
             <TextView
                 android:id="@+id/tv_asteroid_date"
-                style="@style/label_style.asteroid_view"
+                style="@style/label_style.values_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
                 android:text="@{asteroid.closeApproachDate}"
                 tools:text="Date" />
 

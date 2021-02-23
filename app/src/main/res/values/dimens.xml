@@ -8,12 +8,13 @@
     <dimen name="margin_extra_large">64dp</dimen>
 
     <dimen name="padding_regular">10dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
 
     <dimen name="status_icon_size">50dp</dimen>
     <dimen name="max_edit_text_width">300dp</dimen>
     <dimen name="pod_fixed_height">220dp</dimen>
-    <dimen name="padding_medium">16dp</dimen>
     <dimen name="pod_title_text_size">20sp</dimen>
 
     <dimen name="text_size_regular">18sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
 </resources>

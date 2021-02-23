@@ -22,13 +22,14 @@
         <item name="android:layout_marginEnd">@dimen/margin_small</item>
     </style>
 
-    <style name="label_style.detail_screen_label">
+    <style name="label_style.title_label">
         <item name="android:layout_marginTop">@dimen/margin_regular</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="label_style.detail_screen_values">
+    <style name="label_style.values_label">
         <item name="android:layout_marginTop">@dimen/margin_extra_small</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
 
