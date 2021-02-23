@@ -43,7 +43,7 @@
                 android:background="@color/pod_title_bg"
                 android:padding="@dimen/padding_medium"
                 android:text="@{viewModel.pod.title}"
-                android:textSize="@dimen/pod_title_textsize"
+                android:textSize="@dimen/pod_title_text_size"
                 android:textStyle="bold" />
         </FrameLayout>
 
