@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/placeholder_picture_of_day"
+                tools:srcCompat="@drawable/placeholder_picture_of_day"
                 android:contentDescription="@string/nasa_picture_of_day_content_description" />
 
             <TextView

@@ -44,7 +44,7 @@
                 style="@style/label_style.asteroid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_regular"
+                android:layout_marginTop="@dimen/margin_small"
                 android:text="@{asteroid.closeApproachDate}"
                 tools:text="Date" />
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_regular">7dp</dimen>
+    <dimen name="margin_regular">16dp</dimen>
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
     <dimen name="margin_large_x">40dp</dimen>
     <dimen name="margin_extra_large">64dp</dimen>
 
@@ -13,4 +14,6 @@
     <dimen name="pod_fixed_height">220dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="pod_title_text_size">20sp</dimen>
+
+    <dimen name="text_size_regular">18sp</dimen>
 </resources>

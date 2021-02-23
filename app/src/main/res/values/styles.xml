@@ -9,8 +9,8 @@
     </style>
 
     <style name="label_style">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_regular</item>
+        <item name="android:textColor">@color/default_text_color</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:ellipsize">end</item>
@@ -18,10 +18,18 @@
     </style>
 
     <style name="label_style.asteroid_view">
-        <item name="android:layout_marginStart">@dimen/margin_regular</item>
-        <item name="android:layout_marginEnd">@dimen/margin_regular</item>
+        <item name="android:layout_marginStart">@dimen/margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/margin_small</item>
     </style>
 
+    <style name="label_style.detail_screen_label">
+        <item name="android:layout_marginTop">@dimen/margin_regular</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="label_style.detail_screen_values">
+        <item name="android:layout_marginTop">@dimen/margin_extra_small</item>
+    </style>
 
 
 </resources>
