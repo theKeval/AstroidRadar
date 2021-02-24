@@ -1,4 +1,4 @@
-# Purpose of this Folder
+# Asteroid Radar Application
 
 This Asteroid Radar application is made for  project of program "Android Kotlin Developer".
 
